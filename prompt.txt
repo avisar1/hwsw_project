@@ -1,0 +1,9 @@
+AI Tool Prompts Used:
+
+Tool Used: Google Gemini (Advanced Agentic Coding)
+
+Prompts/Instructions provided to the AI:
+1. "read this project. we need to implement it now: /Users/idanavisar/Downloads/Project_co_design.pdf"
+2. Provided connection instructions for the course's naranja10 server and QEMU setup.
+3. Instructed the AI to proceed with selecting `nbody` and `pyflate` as the two benchmarks.
+4. The AI was used to help scaffold the bash scripts (`script_nbody.sh`, `script_pyflate.sh`), write the optimized Python implementations (`optimized_nbody.py`, `optimized_pyflate.py`), design the hardware acceleration proposals in Verilog (`nbody_accelerator.v`, `pyflate_accelerator.v`), and structure the final reports based on the analysis.
