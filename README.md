@@ -18,7 +18,7 @@ Because this project requires the Linux `perf` tool and KVM acceleration, you mu
 ### 1. Connect and Start the VM
 Open your terminal and SSH into the gateway, then the compute node:
 ```bash
-ssh <your_username>@tangerine.cslcs.technion.ac.il
+ssh idan.avisar@tangerine.cslcs.technion.ac.il
 ssh naranja10
 ```
 
@@ -41,7 +41,7 @@ qemu-system-x86_64 \
 ### 2. Connect to the running VM
 Open a **new** terminal window on your machine and run:
 ```bash
-ssh -J <your_username>@tangerine.cslcs.technion.ac.il,<your_username>@naranja10 -p 2222 ubuntu@localhost
+ssh -J idan.avisar@tangerine.cslcs.technion.ac.il,idan.avisar@naranja10 -p 2222 ubuntu@localhost
 ```
 
 ### 3. Run the Scripts
