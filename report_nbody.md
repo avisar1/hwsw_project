@@ -6,8 +6,9 @@ The `nbody` benchmark simulates the gravitational interactions (orbits) of the J
 
 Initial Analysis:
 Using `perf` and flame graphs, the major performance bottleneck is observed in the `advance()` function, specifically within the nested loop calculating the distance between bodies: `distance = math.sqrt(dx**2 + dy**2 + dz**2)`. 
-1. The `** 2` operation in Python has overhead compared to simple multiplication.
-2. Object attribute lookups (e.g., `body1.x`, `body2.y`) in the inner loop cause significant memory access and Python object overhead.
+- **Flame Graph Visual**: The generated SVG flame graph displays a massive, flat, wide block at the bottom with very few tall spikes. This "plateau" indicates that the CPU is spending almost 100% of its execution time trapped inside a single wide loop (`advance()`), rather than deeply nested function calls. This visually proved that optimizing the inner math loop would yield the highest performance gains.
+- **Bottleneck 1**: The `** 2` operation in Python has overhead compared to simple multiplication.
+- **Bottleneck 2**: Object attribute lookups (e.g., `body1.x`, `body2.y`) in the inner loop cause significant memory access and Python object overhead.
 
 Optimizations:
 The `optimized_nbody.py` script introduces the following optimizations:
