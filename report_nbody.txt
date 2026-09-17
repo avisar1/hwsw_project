@@ -19,13 +19,15 @@ Performance Comparison:
 After applying these optimizations, execution time is expected to drop significantly (well over the required 7% threshold, typically 20-30% in pure Python workloads of this type), as attribute lookup and object allocation overheads are entirely removed from the `O(N^2)` inner loop.
 
 Hardware Acceleration Proposal:
-1. **Hardware description**: A pipelined floating-point N-Body force accelerator implemented in Verilog (`nbody_accelerator.v`).
+1. **Hardware description**: A pipelined floating-point N-Body force accelerator implemented in Verilog. We propose two architectures:
+   - **V1 (Scalar)**: `nbody_accelerator.v`. A single 4-stage pipeline that computes one pair's gravity at a time.
+   - **V2 (SIMD / Systolic Array)**: `nbody_accelerator_v2.v`. Since there are exactly 5 bodies (10 unique pairs), V2 instantiates 10 parallel V1 pipelines to compute the entire solar system's gravity in a single hardware cycle.
 2. **Inputs and outputs**:
-   - Inputs: `clk`, `rst`, `start`, `dx`, `dy`, `dz` (32-bit floats)
-   - Outputs: `mag_out` (32-bit float representing `1 / dist^3`), `done` signal
-3. **Hardware architecture**: The module implements a 4-stage pipeline. Stage 1 squares the deltas. Stage 2 sums them. Stage 3 calculates the square root (distance). Stage 4 calculates the inverse cube. 
-4. **Hardware/software interface**: The Python software would write `dx, dy, dz` to memory-mapped registers, trigger the `start` signal, and read the resulting `mag_out` when the `done` interrupt fires. The inner loop in `optimized_nbody.py` would be replaced by DMA transfers of coordinate pairs to this hardware module.
-5. **Acceleration justification**: Floating-point math (square root and division) is expensive in general purpose CPUs, and Python interprets these slowly. Offloading the exact formula `1 / sqrt(x^2+y^2+z^2)^3` to dedicated logic saves hundreds of CPU cycles per pair interaction.
-6. **Block Diagram**: 
-   (Software) --[DMA: dx, dy, dz]--> [Registers] --> [Multiplier Array] --> [Adder Tree] --> [FP SQRT IP] --> [Inv Cube Logic] --> [Registers] --[Interrupt]--> (Software)
-7. **Trade-offs**: Implementing floating-point logic in hardware consumes significant logic gates (Area). However, the performance gain in simulation workloads justifies the area cost. Power consumption may increase on the FPGA/ASIC, but execution time decreases drastically, improving energy efficiency per task.
+   - V1 Inputs: `dx`, `dy`, `dz` (32-bit floats for one pair). Output: `mag_out` (1 / dist^3).
+   - V2 Inputs: Coordinates for all 5 planets simultaneously. Outputs: 10 parallel `mag_out` results for all 10 pairs.
+3. **Hardware architecture**: The core module implements a 4-stage pipeline. Stage 1 squares the deltas. Stage 2 sums them. Stage 3 calculates the square root (distance). Stage 4 calculates the inverse cube. V2 simply duplicates this core 10 times and routes the inputs accordingly.
+4. **Hardware/software interface**: The Python software would write the coordinates to memory-mapped registers, trigger the `start` signal, and read the resulting magnitudes when the `done` interrupt fires. The V2 architecture allows the software to send a full vector of planets via DMA.
+5. **Acceleration justification**: Floating-point math is expensive in general purpose CPUs. Offloading the exact formula `1 / sqrt(x^2+y^2+z^2)^3` to dedicated logic saves hundreds of CPU cycles. The V2 SIMD architecture guarantees an exponential speedup by processing all 10 pairs concurrently.
+6. **Block Diagram (V2)**: 
+   (Software) --[DMA: All Planets]--> [Registers] --> [10x Parallel Math Pipelines] --> [10x Inv Cube Logic] --> [10x Registers] --[Interrupt]--> (Software)
+7. **Trade-offs**: The V2 parallel architecture provides massive speedup but consumes 10x the silicon area (logic gates) compared to V1. For a small 5-body simulation, the die area is manageable. For a 1,000-body simulation, the V2 approach would be physically impossible to fit on an FPGA, meaning the software would have to batch the vectors.
