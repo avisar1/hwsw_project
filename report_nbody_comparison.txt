@@ -1,0 +1,9 @@
+Benchmarks with tag 'math':
+===========================
+
+Mean +- std dev: [nbody_baseline] 482 ms +- 6 ms -> [nbody_optimized] 340 ms +- 2 ms: 1.42x faster
+
+All benchmarks:
+===============
+
+Mean +- std dev: [nbody_baseline] 482 ms +- 6 ms -> [nbody_optimized] 340 ms +- 2 ms: 1.42x faster
