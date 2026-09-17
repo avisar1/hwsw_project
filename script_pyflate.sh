@@ -24,7 +24,7 @@ perf script > out.pyflate.perf
 echo "Flame graph saved as pyflate_flamegraph.svg"
 
 echo "Comparing optimized version..."
-# For local testing, we use cProfile on the standalone optimized script.
-python3-dbg -m cProfile -s tottime optimized_pyflate.py > report_pyflate_optimized_profile.txt
+python3-dbg optimized_pyflate.py -o pyflate_optimized.json
+python3-dbg -m pyperf compare_to pyflate_baseline.json pyflate_optimized.json > report_pyflate_comparison.txt
 
-echo "pyflate benchmark script completed successfully!"
+echo "Optimization execution complete. View report_pyflate_comparison.txt for the exact speedup!"

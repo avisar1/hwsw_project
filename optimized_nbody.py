@@ -64,4 +64,6 @@ def main(n_steps=1000):
         advance(0.01, n, m, px, py, pz, vx, vy, vz)
         
 if __name__ == '__main__':
-    main(1000)
+    import pyperf
+    runner = pyperf.Runner()
+    runner.bench_func('nbody', lambda: main(1000))

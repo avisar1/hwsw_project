@@ -24,8 +24,7 @@ perf script > out.nbody.perf
 echo "Flame graph saved as nbody_flamegraph.svg"
 
 echo "Comparing optimized version..."
-# To fully test with pyperformance, you'd replace the bm_nbody.py in site-packages.
-# For local testing, we use cProfile on the standalone optimized script.
-python3-dbg -m cProfile -s tottime optimized_nbody.py > report_nbody_optimized_profile.txt
+python3-dbg optimized_nbody.py -o nbody_optimized.json
+python3-dbg -m pyperf compare_to nbody_baseline.json nbody_optimized.json > report_nbody_comparison.txt
 
-echo "nbody benchmark script completed successfully!"
+echo "Optimization execution complete. View report_nbody_comparison.txt for the exact speedup!"

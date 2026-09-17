@@ -66,4 +66,6 @@ def main():
     decompress_simulation(data)
 
 if __name__ == '__main__':
-    main()
+    import pyperf
+    runner = pyperf.Runner()
+    runner.bench_func('pyflate', main)
