@@ -1,0 +1,55 @@
+         101062 function calls in 0.392 seconds
+
+   Ordered by: internal time
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+     1000    0.375    0.000    0.391    0.000 optimized_nbody.py:16(advance)
+   100000    0.016    0.000    0.016    0.000 {built-in method math.sqrt}
+        1    0.001    0.001    0.392    0.392 optimized_nbody.py:49(main)
+        1    0.000    0.000    0.000    0.000 {built-in method _imp.create_builtin}
+        1    0.000    0.000    0.392    0.392 optimized_nbody.py:1(<module>)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:746(find_spec)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:1022(_find_and_load)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:179(_get_module_lock)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:421(spec_from_loader)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:664(_load_unlocked)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:100(acquire)
+        4    0.000    0.000    0.000    0.000 {built-in method builtins.getattr}
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:125(release)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:492(_init_module_attrs)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:921(_find_spec)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:987(_find_and_load_unlocked)
+        2    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:233(_call_with_frames_removed)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:71(__init__)
+        1    0.000    0.000    0.000    0.000 {built-in method _imp.exec_builtin}
+        1    0.000    0.000    0.392    0.392 {built-in method builtins.exec}
+        4    0.000    0.000    0.000    0.000 {built-in method builtins.hasattr}
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:770(create_module)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:254(_requires_builtin_wrapper)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:564(module_from_spec)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:169(__enter__)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:198(cb)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:404(parent)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:357(__init__)
+        1    0.000    0.000    0.000    0.000 optimized_nbody.py:60(<listcomp>)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:173(__exit__)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:778(exec_module)
+        2    0.000    0.000    0.000    0.000 {method 'rpartition' of 'str' objects}
+        3    0.000    0.000    0.000    0.000 {built-in method _imp.acquire_lock}
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:244(_verbose_message)
+        1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:165(__init__)
+        2    0.000    0.000    0.000    0.000 {method '__exit__' of '_thread.lock' objects}
+        2    0.000    0.000    0.000    0.000 {built-in method _thread.allocate_lock}
+        1    0.000    0.000    0.000    0.000 {built-in method _imp.is_builtin}
+        3    0.000    0.000    0.000    0.000 {built-in method _imp.release_lock}
+        2    0.000    0.000    0.000    0.000 {built-in method _thread.get_ident}
+        2    0.000    0.000    0.000    0.000 {method 'get' of 'dict' objects}
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:893(__enter__)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:897(__exit__)
+        1    0.000    0.000    0.000    0.000 {method 'pop' of 'dict' objects}
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:412(has_location)
+        1    0.000    0.000    0.000    0.000 {built-in method builtins.len}
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:795(is_package)
+
+
