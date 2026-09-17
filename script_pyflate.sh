@@ -9,7 +9,7 @@ sudo apt-get install -y linux-tools-common linux-tools-generic linux-tools-$(una
 python3-dbg -m pip install pyperformance
 
 echo "Running pyflate benchmark with perf..."
-perf record -F 999 -g -- python3-dbg -m pyperformance run --bench pyflate -o pyflate_baseline.json
+perf record -F 999 -e cpu-clock -g -- python3-dbg -m pyperformance run --bench pyflate -o pyflate_baseline.json
 
 echo "Generating perf report..."
 perf report --stdio > report_pyflate_baseline.txt

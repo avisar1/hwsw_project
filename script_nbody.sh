@@ -9,7 +9,7 @@ sudo apt-get install -y linux-tools-common linux-tools-generic linux-tools-$(una
 python3-dbg -m pip install pyperformance
 
 echo "Running nbody benchmark with perf..."
-perf record -F 999 -g -- python3-dbg -m pyperformance run --bench nbody -o nbody_baseline.json
+perf record -F 999 -e cpu-clock -g -- python3-dbg -m pyperformance run --bench nbody -o nbody_baseline.json
 
 echo "Generating perf report..."
 perf report --stdio > report_nbody_baseline.txt
